@@ -1,17 +1,15 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const path = require('path');
+const port = process.env.PORT || 5000;
 const stoicapi = require("stoic-api");
 
-console.log(stoicapi);
+// Serve static files from the React app
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.engine('.ejs', require('ejs').__express);
-app.set('views', __dirname + '/client');
-app.set('view engine', 'ejs');
-
-app.get('/', (req, res) => {
-    res.render('index', { quote: stoicapi.random() });
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname+'/client/build/index.html'));
+// });  
 
 app.listen(port, () => {
     console.log(`App is running on port ${port}`);
